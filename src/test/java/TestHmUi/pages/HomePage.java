@@ -30,6 +30,15 @@ public class HomePage extends PageObject {
     @FindBy(xpath = "//*[@id=\"modal-theLoginForm\"]/button")
     private WebElement loginButton;
 
+    @FindBy(xpath = "//*[@id=\"modal-txt-signin-email-unknown-error-type-error\"]")
+    private WebElement invalidPassMessage;
+
+    @FindBy(xpath = "//*[@id=\"modal-txt-signin-email-email-format-error\"]")
+    private WebElement incorrectFormatMessage;
+
+    @FindBy(xpath = "//*[@id=\"modal-txt-signin-email-required-error\"]")
+    private WebElement noEmailMessage;
+
     public void clickConfidentialityButton() {
         confidentialityButton.click();
     }
@@ -50,6 +59,17 @@ public class HomePage extends PageObject {
         loginButton.click();
     }
 
+    public boolean isInvalidCredentialsMessageDisplayed() {
+        return invalidPassMessage.isDisplayed();
+    }
+
+    public boolean isIncorrectFormatMessageDisplayed() {
+        return incorrectFormatMessage.isDisplayed();
+    }
+
+    public boolean isNoEmailMessageDisplayed() {
+        return noEmailMessage.isDisplayed();
+    }
 
     public List<String> getDefinitions() {
         WebElementFacade definitionList = find(By.tagName("ol"));
