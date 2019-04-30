@@ -19,6 +19,31 @@ public class EndUserSteps {
     }
 
     @Step
+    @Description("Search for a product")
+    public void searchFor(String product){
+        homePage.search(product);
+        homePage.clickSearchButton();
+    }
+
+    @Step
+    @Description("Search for a product")
+    public void enterForSearch(String product){
+        homePage.search(product);
+    }
+
+    @Step
+    @Description("Get found cardigan")
+    public boolean isFoundCardigan(){
+        return homePage.getFoundCardigan();
+    }
+
+    @Step
+    @Description("Verify suggestion for search")
+    public boolean isSuggestionForSearchDisplayed(){
+        return homePage.isSuggestionForSearchDisplayed();
+    }
+
+    @Step
     @Description("Opens MyAccount page")
     public void goToMyAccountPage() {
         myAccountPage.open();
@@ -71,5 +96,17 @@ public class EndUserSteps {
     @Description("Returns true if no email message is displayed; false otherwise")
     public boolean isNoEmailMessageDisplayed() {
         return homePage.isNoEmailMessageDisplayed();
+    }
+
+    @Step
+    @Description("Returns true if no product found message is displayed; false otherwise")
+    public boolean isNoProductFoundMessageDisplayed() {
+        return homePage.noProductFoundMessageDisplayed();
+    }
+
+    @Step
+    @Description("Returns true if correct word is suggested.")
+    public boolean isCorrectWordSuggested() {
+        return homePage.isCorrectWordSuggested();
     }
 }

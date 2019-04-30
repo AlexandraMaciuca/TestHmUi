@@ -39,6 +39,27 @@ public class HomePage extends PageObject {
     @FindBy(xpath = "//*[@id=\"modal-txt-signin-email-required-error\"]")
     private WebElement noEmailMessage;
 
+    @FindBy(xpath = "/html/body/header/nav/ul[2]/li[1]/a[1]")
+    private WebElement sideMenuButton;
+
+    @FindBy(xpath = "//*[@id=\"main-search\"]")
+    private WebElement searchField;
+
+    @FindBy(xpath = "//*[@id=\"search-field\"]/form/button")
+    private WebElement searchButton;
+
+    @FindBy(xpath = "//*[@id=\"main-content\"]/div[3]/div/div[1]/ul/li[2]/article/div[1]/a/img")
+    private WebElement foundCardigan;
+
+    @FindBy(xpath = "//*[@id=\"main-content\"]/div[2]/h1")
+    private WebElement noProductFound;
+
+    @FindBy(xpath = "//*[@id=\"ui-id-1\"]")
+    private WebElement triSuggestion;
+
+    @FindBy(xpath = "//*[@id=\"main-content\"]/div[3]/p[1]")
+    private WebElement correctWordSuggestion;
+
     public void clickConfidentialityButton() {
         confidentialityButton.click();
     }
@@ -71,10 +92,31 @@ public class HomePage extends PageObject {
         return noEmailMessage.isDisplayed();
     }
 
-    public List<String> getDefinitions() {
-        WebElementFacade definitionList = find(By.tagName("ol"));
-        return definitionList.findElements(By.tagName("li")).stream()
-                .map(element -> element.getText())
-                .collect(Collectors.toList());
+    public void openSideMenu(){
+        sideMenuButton.click();
+    }
+
+    public void search(String product) {
+        searchField.sendKeys(product);
+    }
+
+    public void clickSearchButton(){
+        searchButton.click();
+    }
+
+    public boolean getFoundCardigan(){
+        return foundCardigan.isDisplayed();
+    }
+
+    public boolean noProductFoundMessageDisplayed(){
+        return noProductFound.isDisplayed();
+    }
+
+    public boolean isSuggestionForSearchDisplayed() {
+        return triSuggestion.isDisplayed();
+    }
+
+    public boolean isCorrectWordSuggested() {
+        return correctWordSuggestion.isDisplayed();
     }
 }

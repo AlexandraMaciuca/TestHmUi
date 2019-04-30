@@ -1,4 +1,4 @@
-package TestHmUi.features.search;
+package TestHmUi.features;
 
 
 import TestHmUi.steps.serenity.EndUserSteps;
@@ -13,7 +13,7 @@ import org.openqa.selenium.WebDriver;
 import static TestHmUi.utils.Constants.*;
 
 @RunWith(SerenityRunner.class)
-public class LoginStory {
+public class FunctionTourTestingStory {
     @Managed(uniqueSession = true)
     public WebDriver webdriver;
 
@@ -62,5 +62,61 @@ public class LoginStory {
         Assert.assertTrue("No email message is not displayed", user.isNoEmailMessageDisplayed());
     }
 
+    // endregion
+
+    // region Product search tests
+
+    @Test
+    public void searchProductCardigan() {
+        user.goToHomePage();
+        user.acceptConfidentiality();
+
+        user.searchFor("cardigan");
+        Assert.assertTrue("Expected cardigan was not displayed.", user.isFoundCardigan());
+    }
+
+    @Test
+    public void searchNonExistingProduct() {
+        user.goToHomePage();
+        user.acceptConfidentiality();
+
+        user.searchFor("asdadaadsadasdas");
+        Assert.assertTrue("No product found message was not displayed.", user.isNoProductFoundMessageDisplayed());
+    }
+
+    @Test
+    public void searchNumbersProduct() {
+        user.goToHomePage();
+        user.acceptConfidentiality();
+
+        user.searchFor("0123");
+        Assert.assertTrue("No product found message was not displayed.", user.isNoProductFoundMessageDisplayed());
+    }
+
+    @Test
+    public void enterProductTri() {
+        user.goToHomePage();
+        user.acceptConfidentiality();
+
+        user.enterForSearch("tri");
+        Assert.assertTrue("Suggestion for 'tri' was not displayed.", user.isSuggestionForSearchDisplayed());
+    }
+
+    @Test
+    public void enterProductCardiganMisspelled() {
+        user.goToHomePage();
+        user.acceptConfidentiality();
+
+        user.searchFor("cargidan");
+        Assert.assertTrue("Suggestions for correct word were not offered.", user.isCorrectWordSuggested());
+    }
+    // endregion
+
+    // region Favorite products tests
+    
+
+    // endregion
+
+    // region Cart tests
     // endregion
 }
