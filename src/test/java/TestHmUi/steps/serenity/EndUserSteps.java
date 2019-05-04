@@ -1,7 +1,9 @@
 package TestHmUi.steps.serenity;
 
+import TestHmUi.pages.FavoritesPage;
 import TestHmUi.pages.HomePage;
 import TestHmUi.pages.MyAccountPage;
+import TestHmUi.pages.SocksPage;
 import net.thucydides.core.annotations.Step;
 import org.springframework.context.annotation.Description;
 
@@ -11,6 +13,8 @@ public class EndUserSteps {
 
     HomePage homePage;
     MyAccountPage myAccountPage;
+    SocksPage socksPage;
+    FavoritesPage favoritesPage;
 
     @Step
     @Description("Opens the first page.")
@@ -29,6 +33,18 @@ public class EndUserSteps {
     @Description("Search for a product")
     public void enterForSearch(String product){
         homePage.search(product);
+    }
+
+    @Step
+    @Description("Open socks page")
+    public void goToSocksPage(){
+        socksPage.open();
+    }
+
+    @Step
+    @Description("Open socks page")
+    public void goToFavoritesPage(){
+        favoritesPage.open();
     }
 
     @Step
@@ -80,6 +96,7 @@ public class EndUserSteps {
         homePage.clickLoginButton();
     }
 
+
     @Step
     @Description("Return true if invalid credentials message is displayed; false otherwise.")
     public boolean isInvalidCredentialsMessageDisplayed() {
@@ -108,5 +125,9 @@ public class EndUserSteps {
     @Description("Returns true if correct word is suggested.")
     public boolean isCorrectWordSuggested() {
         return homePage.isCorrectWordSuggested();
+    }
+
+    public void clickFavoriteProductButton() {
+        socksPage.clickFavoriteProductButton();
     }
 }

@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
 import static TestHmUi.utils.Constants.*;
+import static TestHmUi.utils.Helper.sleep;
 
 @RunWith(SerenityRunner.class)
 public class FunctionTourTestingStory {
@@ -113,7 +114,19 @@ public class FunctionTourTestingStory {
     // endregion
 
     // region Favorite products tests
-    
+
+    @Test
+    public void addProductToFavorites() {
+        user.goToHomePage();
+        user.acceptConfidentiality();
+
+        user.goToSocksPage();
+        sleep(1500);
+        user.clickFavoriteProductButton();
+        sleep(1000);
+        user.goToFavoritesPage();
+       // Assert.assertTrue("Suggestions for correct word were not offered.", user.isCorrectWordSuggested());
+    }
 
     // endregion
 
